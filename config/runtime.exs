@@ -20,7 +20,16 @@ if System.get_env("PHX_SERVER") do
   config :tilex, TilexWeb.Endpoint, server: true
 end
 
-if config_env() == :prod do
+# Override compiled constants with runtime environment variable
+config :tilex, :canonical_domain, System.get_env("CANONICAL_DOMAIN")
+config :tilex, :guest_author_allowlist, System.get_env("GUEST_AUTHOR_ALLOWLIST")
+config :tilex, :date_display_tz, System.get_env("DATE_DISPLAY_TZ")
+
+config :ueberauth, Ueberauth.Strategy.Google.OAuth,
+       client_id: System.get_env("GOOGLE_CLIENT_ID"),
+       client_secret: System.get_env("GOOGLE_CLIENT_SECRET")
+
+if config_env() == :dev || config_env() == :prod do
   database_url =
     System.get_env("DATABASE_URL") ||
       raise """
@@ -31,7 +40,7 @@ if config_env() == :prod do
   maybe_ipv6 = if System.get_env("ECTO_IPV6"), do: [:inet6], else: []
 
   config :tilex, Tilex.Repo,
-    ssl: true,
+    ssl: false,
     url: database_url,
     pool_size: String.to_integer(System.get_env("POOL_SIZE") || "10"),
     socket_options: maybe_ipv6

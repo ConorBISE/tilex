@@ -1,0 +1,15 @@
+.env
+*.ez
+/_build/
+/.elixir_ls
+/.fetch
+/assets/node_modules/
+/cover/
+/deps/
+/doc/
+/priv/static/assets/
+/priv/static/cache_manifest.json
+/screenshots
+erl_crash.dump
+npm-debug.log
+tilex-*.tar

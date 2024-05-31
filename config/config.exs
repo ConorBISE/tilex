@@ -5,6 +5,8 @@
 # is restricted to this project.
 import Config
 
+config :tilex, :env, Mix.env()
+
 # General application configuration
 config :tilex, ecto_repos: [Tilex.Repo]
 
