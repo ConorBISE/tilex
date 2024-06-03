@@ -52,4 +52,4 @@ jobs:
         cluster: TilexCluster
 
     - name: Update image
-      run: kubectl set image tilex tilex=tilex
+      run: kubectl set image deployment/tilex tilex=tilex
