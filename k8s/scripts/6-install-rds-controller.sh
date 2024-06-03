@@ -1,0 +1,1 @@
+helm install --create-namespace -n ack-system oci://public.ecr.aws/aws-controllers-k8s/rds-chart --version=0.0.27 --generate-name --set=aws.region=us-east-1

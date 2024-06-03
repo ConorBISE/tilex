@@ -52,7 +52,10 @@ ENV CANONICAL_DOMAIN="http://localhost:4000"
 ENV HOSTED_DOMAIN="localhost:4000"
 
 # Database variables
-ENV DATABASE_URL="ecto://host.docker.internal/tilex"
+ENV DATABASE_HOST="host.docker.internal"
+ENV DATABASE_USERNAME="postgres"
+ENV DATABASE_PASSWORD=""
+ENV DATABASE_NAME="tilex_dev"
 
 # Oauth config
 ENV GOOGLE_CLIENT_ID="<REPLACEME-CLIENT_ID>"
