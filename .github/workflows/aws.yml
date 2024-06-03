@@ -52,4 +52,4 @@ jobs:
         cluster: TilexCluster
 
     - name: Update image
-      run: kubectl set image deployment/tilex tilex=tilex
+      run: kubectl set image deployment/tilex tilex=191982029618.dkr.ecr.us-east-1.amazonaws.com/tilex
