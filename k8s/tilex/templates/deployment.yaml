@@ -54,7 +54,13 @@ spec:
       initContainers:
       - name: init-tilex
         image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
-        command: ['sh', '-c', "/app/_build/${MIX_ENV}/rel/tilex/bin/tilex eval 'Tilex.Release.migrate' && (/app/_build/${MIX_ENV}/rel/tilex/bin/tilex eval 'Tilex.Release.create_channel(\"CoolTopic1\", \"cooltopic1\")' || :) && (/app/_build/${MIX_ENV}/rel/tilex/bin/tilex eval 'Tilex.Release.create_channel(\"CoolTopic2\", \"cooltopic2\")' || :)"]
+        command: 
+          - 'sh'
+          - '-c'
+          - "/app/_build/${MIX_ENV}/rel/tilex/bin/tilex eval 'Tilex.Release.migrate' &&
+            (/app/_build/${MIX_ENV}/rel/tilex/bin/tilex eval 'Tilex.Release.create_channel(\"CoolTopic1\", \"cooltopic1\")' || :) &&
+            (/app/_build/${MIX_ENV}/rel/tilex/bin/tilex eval 'Tilex.Release.create_channel(\"CoolTopic2\", \"cooltopic2\")' || :)"
+
         {{- with .Values.env }}
         env:
           {{- toYaml . | nindent 12 }}
